@@ -1,0 +1,9 @@
+def replace_spaces(string):
+    """
+    Replaces all spaces in string with "%20" and returns the modified string.
+    """
+    return string.replace(" ", "%20")
+
+input_string = input("Enter a string: ")
+output_string = replace_spaces(input_string)
+print("Modified string:", output_string)

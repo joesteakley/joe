@@ -1,0 +1,52 @@
+def zero_matrix():
+    # Prompt the user to enter the matrix dimensions
+    while True:
+        try:
+            rows = int(input("Enter the number of rows in the matrix: "))
+            cols = int(input("Enter the number of columns in the matrix: "))
+            if rows <= 0 or cols <= 0:
+                raise ValueError("Dimensions must be positive integers.")
+            break
+        except ValueError as e:
+            print("Invalid input:", e)
+
+    # Prompt the user to enter the matrix elements
+    matrix = []
+    while len(matrix) < rows:
+        row = input("Enter the elements of row {} separated by spaces: ".format(len(matrix)+1)).split()
+        if len(row) != cols:
+            print("Invalid input: row must have {} elements.".format(cols))
+            continue
+        try:
+            row = [int(x) for x in row]
+            matrix.append(row)
+        except ValueError:
+            print("Invalid input: all elements must be integers.")
+
+    # Print the original matrix
+    print("Original matrix:")
+    for row in matrix:
+        print(row)
+
+    # Check for zero elements and update the matrix
+    zero_rows = set()
+    zero_cols = set()
+    for i in range(rows):
+        for j in range(cols):
+            if matrix[i][j] == 0:
+                zero_rows.add(i)
+                zero_cols.add(j)
+    for i in zero_rows:
+        for j in range(cols):
+            matrix[i][j] = 0
+    for j in zero_cols:
+        for i in range(rows):
+            matrix[i][j] = 0
+
+    # Print the updated matrix
+    print("Updated matrix:")
+    for row in matrix:
+        print(row)
+
+# Call the function to test it
+zero_matrix()

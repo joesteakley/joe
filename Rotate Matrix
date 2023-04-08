@@ -1,0 +1,50 @@
+def rotate_matrix(matrix):
+    """
+    Rotates the input matrix by 90 degrees clockwise.
+    """
+    # Get the number of rows and columns in the matrix
+    rows = len(matrix)
+    cols = len(matrix[0])
+
+    # Create a new matrix with swapped rows and columns
+    rotated_matrix = [[0 for _ in range(rows)] for _ in range(cols)]
+    for i in range(rows):
+        for j in range(cols):
+            rotated_matrix[j][rows-i-1] = matrix[i][j]
+
+    return rotated_matrix
+
+# Prompt the user to input the number of rows and columns
+while True:
+    try:
+        rows = int(input("Enter the number of rows: "))
+        break
+    except ValueError:
+        print("Invalid input.  Please enter an integer.")
+cols = None
+while cols is None:
+    try:
+        cols = int(input("Enter the number of columns: "))
+    except ValueError:
+        print("Invalid input.  Please enter an integer.")
+
+# Prompt the user to input the matrix
+print("Enter the matrix row by row, separated by spaces:")
+matrix = []
+for i in range(rows):
+    while True:
+        try:
+            row = input().split()
+            if len(row) != cols:
+                raise ValueError("Input matrix must be rectangular")
+            row = [int(x) for x in row]
+            matrix.append(row)
+            break
+        except ValueError:
+            print("Invalid input.  Please enter a row with {} integer(s)".format(cols))
+
+# Rotate the matrix and print the result
+rotated_matrix = rotate_matrix(matrix)
+print("The rotated matrix is:")
+for row in rotated_matrix:
+    print(" ".join([str(x) for x in row]))

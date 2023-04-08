@@ -1,3 +1,3 @@
 # joe
 
-Welcome to my repository.  I am not offering a license for code in this repository at this time.
+Welcome to my repository.  I am not offering a license for my code at this time.

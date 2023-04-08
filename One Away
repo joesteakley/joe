@@ -1,0 +1,58 @@
+def one_edit_away(s1, s2):
+    """
+    Returns True if s1 and s2 are one edit (or zero edits) away from each other,
+    False otherwise.
+    """
+    # If the two strings have a length difference greater than 1, they can't be one edit away
+    if abs(len(s1) - len(s2)) > 1:
+        return False
+
+    # Find the shorter and longer string
+    if len(s1) < len(s2):
+        shorter = s1
+        longer = s2
+    else:
+        shorter = s2
+        longer = s1
+
+    # Initialize an index for the shorter string
+    i = 0
+
+    # Initialize a flag to track whether an edit has already been made
+    edit_made = False
+
+    # Iterate over the longer string
+    for j in range(len(longer)):
+        # If the characters at the current index are different, an edit is required
+        if longer[j] != shorter[i]:
+            # If an edit has already been made, these strings are not one edit away
+            if edit_made:
+                return False
+            
+            # Mark that an edit has been made
+            edit_made = True
+
+            if len(shorter) == len(longer):
+                # If the strings have the same length, the current character in the shorter string should be replaced
+                i += 1
+            else:
+                # If the strings have different lengths, the current character in the shorter string should be inserted
+                # This means the current index of the longer string will be visited again
+                # Increment j so that it doesn't increment again in the loop
+                j += 1
+        else:
+            # If the characters at the current index are the same, move to the next index in the shorter string
+            i += 1
+
+    return True
+
+# Prompt the user to input two strings
+string1 = input("Enter the first string: ")
+string2 = input("Enter the second string: ")
+
+# Determine if the two strings are one edit (or zero edits) away
+if one_edit_away(string1, string2):
+    print("The two strings are one edit (or zero edits) away.")
+else:
+    print("The two strings are not one edit away.")
+

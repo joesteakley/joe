@@ -1,0 +1,43 @@
+def compress_string(s):
+    """
+    Compresses the input string s using the counts of repeated characters.
+    If the compressed string would not become smaller than the original string,
+    return the original string.
+    """
+    # If the string is empty or has length 1, return the string
+    if len(s) <= 1:
+        return s
+
+    # Initialize the compressed string to the first character of the input string
+    compressed = s[0]
+    
+    # Initialize a count of the current character to 1
+    count = 1
+
+    # Iterate over the input string starting from the second character
+    for i in range(1, len(s)):
+        # If the current character is the same as the previous character, increment the count
+        if s[i] == s[i-1]:
+            count += 1
+        else:
+            # If the current character is different from the previous character, add the count and
+            # the current character to the compressed string and reset the count to 1
+            compressed += str(count) + s[i]
+            count = 1
+
+    # Add the final count to the compressed string
+    compressed += str(count)
+
+    # Return the compressed string if it is shorter than the input string, otherwise return the input string
+    if len(compressed) < len(s):
+        return compressed
+    else:
+        return s
+
+# Prompt the user to input a string
+string = input("Enter a string to compress: ")
+
+# Compress the string and print the result
+compressed_string = compress_string(string)
+print("The compressed string is:", compressed_string)
+

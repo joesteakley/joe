@@ -1,0 +1,16 @@
+def is_unique(string):
+    """
+    Returns True if all characters in string are unique, False otherwise.
+    """
+    char_set = set()
+    for char in string:
+        if char in char_set:
+            return False
+        char_set.add(char)
+    return True
+
+input_string = input("Enter a string: ")
+if is_unique(input_string):
+    print("The string has all unique characters.")
+else:
+    print("The string does not have all unique characters.")

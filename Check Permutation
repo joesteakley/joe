@@ -1,0 +1,26 @@
+def is_permutation(string1, string2):
+    """
+    Returns True if string1 is a permutation of string2, False otherwise.
+    """
+    if len(string1) != len(string2):
+        return False
+    char_count = {}
+    for char in string1:
+        if char in char_count:
+            char_count[char] += 1
+        else:
+            char_count[char] = 1
+    for char in string2:
+        if char not in char_count:
+            return False
+        char_count[char] -= 1
+        if char_count[char] < 0:
+            return False
+    return True
+
+input_string1 = input("Enter the first string: ")
+input_string2 = input("Enter the second string: ")
+if is_permutation(input_string1, input_string2):
+    print("One string is a permutation of the other.")
+else:
+    print("One string is not a permutation of the other.")

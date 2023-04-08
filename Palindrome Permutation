@@ -1,0 +1,31 @@
+def is_permutation_of_palindrome(string):
+    """
+    Returns True if string is a permutation of a palindrome, False otherwise.
+    """
+    # Convert string to lowercase and remove non-alphanumeric characters
+    string = "".join(c.lower() for c in string if c.isalnum())
+    
+    # Count the number of occurrences of each character in the string
+    char_count = {}
+    for char in string:
+        if char in char_count:
+            char_count[char] += 1
+        else:
+            char_count[char] = 1
+    
+    # A string is a permutation of a palindrome if it has at most one character with an odd count
+    odd_count = 0
+    for count in char_count.values():
+        if count % 2 != 0:
+            odd_count += 1
+        if odd_count > 1:
+            return False
+    
+    return True
+
+input_string = input("Enter a string: ")
+if is_permutation_of_palindrome(input_string):
+    print("The string is a permutation of a palindrome.")
+else:
+    print("The string is not a permutation of a palindrome.")
+

@@ -1,0 +1,18 @@
+def is_rotation(s1, s2):
+    # Check that the strings have the same length
+    if len(s1) != len(s2):
+        return False
+
+    # Concatenate s1 with itself to form a new string s1s1
+    s1s1 = s1 + s1
+
+    # Check if s2 is a substring of s1s1
+    return s2 in s1s1
+
+# Test the function with custom inputs
+s1 = input("Enter the first string: ")
+s2 = input("Enter the second string: ")
+if is_rotation(s1, s2):
+    print("{} is a rotation of {}".format(s2, s1))
+else:
+    print("{} is not a rotation of {}".format(s2, s1))

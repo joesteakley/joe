@@ -1,0 +1,25 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+def remove_duplicates(head):
+    # Create a hash set to store visited nodes
+    visited = set()
+ 
+    # Initialize current node and previous node
+    current = head
+    previous = None
+ 
+    # Traverse through the linked list
+    while current:
+        # If current node is already in the visited set, remove it
+        if current.data in visited:
+            previous.next = current.next
+        else:
+            # Add current node to visited set and update previous node
+            visited.add(current.data)
+            previous = current
+        current = current.next
+
+    return head
